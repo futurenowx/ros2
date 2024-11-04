@@ -1,0 +1,17 @@
+How to setup ROS2 - Humble - Gazebo
+
+# Step 1: Download the OSRF public key
+wget -O - http://packages.osrfoundation.org/gazebo.key | gpg --dearmor | sudo tee /usr/share/keyrings/osrf-archive-keyring.gpg > /dev/null
+
+# Step 2: Add the OSRF repository with the signed-by option pointing to the keyring
+echo "deb [signed-by=/usr/share/keyrings/osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
+
+# Step 3: Update the package list
+sudo apt-get update
+
+# Step 4: Install Ignition Fortress
+sudo apt-get install ignition-fortress -y
+
+# Step 5: Install Gazebo
+sudo apt install ros-humble-gazebo-ros-pkgs
+
