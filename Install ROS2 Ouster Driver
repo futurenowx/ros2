@@ -1,0 +1,25 @@
+Ouster Install ROS2 Ouster Driver
+
+https://github.com/ouster-lidar/ouster-ros/tree/ros2
+https://github.com/autowarefoundation/autoware.universe/issues/4978
+
+Install:
+mkdir -p ouster_ws/src && cd ouster_ws/src
+git clone -b ros2 --recurse-submodules https://github.com/ouster-lidar/ouster-ros.git
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+source install/setup.bash
+
+
+Test:
+To connect to a live sensor you use the following launch file
+
+ros2 launch ouster_ros sensor.launch.xml    \
+    sensor_hostname:=<sensor host name>
+
+The equivalent python launch file is:
+
+ros2 launch ouster_ros driver.launch.py    \
+    params_file:=<path to params yaml file>
