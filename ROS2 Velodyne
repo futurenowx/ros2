@@ -1,0 +1,13 @@
+Install ROS2 Driver for Velodyne Puc
+
+Install:
+mkdir -p ~/velodyne_ws/src
+cd velodyne_ws/src
+git clone https://github.com/ros-drivers/velodyne.git -b ros2
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
+source install/setup.bash
+
+Test:
+ros2 launch velodyne velodyne-all-nodes-VLP32C-launch.py
