@@ -1,0 +1,21 @@
+Conti Radar ARS548 Install
+
+https://github.com/robotics-upo/ars548_ros
+
+PreInstall:
+
+sudo apt-get install ros-humble-tf2-ros
+sudo apt-get install libtclap-dev
+sudo apt install python3-colcon-common-extensions
+
+Install:
+mkdir -p ars548_ws/src && cd ars548_ws/src
+
+git clone https://github.com/robotics-upo/ars548_ros.git
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --packages-select ars548_driver ars548_messages
+source install/setup.bash
+
+Test:
+ros2 launch ars548_driver ars548_launch.xml
